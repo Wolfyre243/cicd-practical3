@@ -97,7 +97,7 @@ app.post("/api/register", async (req, res) => {
     const refreshToken = generateRefreshToken(tokenPayload);
     console.log("Registration completed successfully for:", email);
     // Return user data with tokens
-    res.status(201).json({
+    return res.status(201).json({
       id: newUser.id,
       email: newUser.email,
       username: newUser.profile?.fullName || username,
@@ -108,7 +108,7 @@ app.post("/api/register", async (req, res) => {
     });
   } catch (error) {
     console.error("Registration error:", error);
-    res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Internal server error" });
   }
 });
 // Login endpoint with JWT tokens
@@ -137,7 +137,7 @@ app.post("/api/login", async (req, res) => {
     const accessToken = generateAccessToken(tokenPayload);
     const refreshToken = generateRefreshToken(tokenPayload);
     // Return user data with tokens
-    res.json({
+    return res.json({
       id: user.id,
       email: user.email,
       username: user.profile?.fullName || email.split("@")[0],
@@ -148,7 +148,7 @@ app.post("/api/login", async (req, res) => {
     });
   } catch (error) {
     console.error("Login error:", error);
-    res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Internal server error" });
   }
 });
 // Refresh token endpoint for token renewal
@@ -164,7 +164,7 @@ app.post("/api/refresh", async (req, res) => {
       userId: payload.userId,
       email: payload.email,
     });
-    res.json({ accessToken: newAccessToken });
+    return res.json({ accessToken: newAccessToken });
   } catch (error) {
     return res.status(401).json({ error: "Invalid or expired refresh token" });
   }

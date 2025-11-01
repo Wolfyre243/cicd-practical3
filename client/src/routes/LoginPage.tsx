@@ -27,7 +27,7 @@ export default function LoginPage() {
     }
   };
   useEffect(() => {
-    document.title = "Vite + React";
+    document.title = "CI/CD Demo";
   }, []);
   return (
     <div

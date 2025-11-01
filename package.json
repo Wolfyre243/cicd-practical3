@@ -1,0 +1,30 @@
+{
+  "name": "cicd-practical3",
+  "version": "1.0.0",
+  "description": "Full-stack CI/CD demo with React, Prisma, and Playwright",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "api",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=api\" \"npm run dev --workspace=client\"",
+    "build": "npm run build --workspace=api && npm run build --workspace=client",
+    "test": "npm run test --workspace=api && npm run test --workspace=client",
+    "e2e": "npm run e2e --workspace=client",
+    "lint": "npm run lint --workspace=api && npm run lint --workspace=client",
+    "clean": "rm -rf api/dist api/node_modules client/dist client/node_modules node_modules"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=20.19.0",
+    "npm": ">=10.8.2"
+  }
+}

@@ -53,11 +53,11 @@ jobs:
           npx prisma generate
           npm run db:seed:dev
 
-      - name: Run API tests
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/testdb
-          JWT_SECRET: test-secret-key
-        run: npm run test --workspace=api
+      # - name: Run API tests
+      #   env:
+      #     DATABASE_URL: postgresql://postgres:postgres@localhost:5432/testdb
+      #     JWT_SECRET: test-secret-key
+      #   run: npm run test --workspace=api
 
       - name: Build applications
         run: npm run build

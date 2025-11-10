@@ -166,6 +166,7 @@ app.post("/api/refresh", async (req, res) => {
     });
     return res.json({ accessToken: newAccessToken });
   } catch (error) {
+    console.log(error);
     return res.status(401).json({ error: "Invalid or expired refresh token" });
   }
 });

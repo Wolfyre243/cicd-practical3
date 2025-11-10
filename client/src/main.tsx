@@ -1,4 +1,4 @@
-// @ts-expect-error
+// @ts-expect-error blablabla
 import "../index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";

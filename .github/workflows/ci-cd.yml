@@ -63,7 +63,7 @@ jobs:
         run: npm run build
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps --workspace=web
+        run: npx playwright install --with-deps --workspace=client
 
       - name: Start test server
         env:
@@ -74,7 +74,7 @@ jobs:
           sleep 5
       
       - name: Run E2E tests
-        run: npm run e2e --workspace=web
+        run: npm run e2e --workspace=client
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4

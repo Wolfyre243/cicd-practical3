@@ -7,6 +7,7 @@ import {
 import { useAuth } from "../context/useAuth";
 import { useState, useEffect } from "react";
 import type { PaginatedTaskResponse } from "./tasks.loaders";
+import { VITE_API_URL } from "../../api.config";
 
 interface User {
   id: number;
@@ -54,7 +55,7 @@ export default function TasksPage() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users?limit=100`, {
+        const response = await fetch(`${VITE_API_URL}/api/users?limit=100`, {
           headers: {
             Authorization: `Bearer ${
               JSON.parse(localStorage.getItem("auth") || "{}").accessToken

@@ -1,3 +1,5 @@
+import { VITE_API_URL } from "../../api.config";
+
 export async function authFetch(
   url: string,
   options: RequestInit = {}
@@ -18,7 +20,7 @@ export async function authFetch(
   // If unauthorized, try to refresh token
   if (response.status === 401) {
     try {
-      const refreshResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/refresh`, {
+      const refreshResponse = await fetch(`${VITE_API_URL}/api/refresh`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ refreshToken }),

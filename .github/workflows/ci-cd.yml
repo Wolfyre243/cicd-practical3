@@ -50,8 +50,8 @@ jobs:
         run: |
           cd api
           npx prisma migrate deploy
-          npm run db:seed:dev
           npx prisma generate
+          npm run db:seed:dev
 
       - name: Run API tests
         env:

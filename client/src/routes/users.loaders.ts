@@ -30,7 +30,7 @@ export async function usersLoader({ request }: LoaderFunctionArgs) {
   const page = url.searchParams.get("page") || "1";
   const limit = url.searchParams.get("limit") || "10";
   try {
-    const response = await authFetch(`/api/users?page=${page}&limit=${limit}`);
+    const response = await authFetch(`${import.meta.env.VITE_API_URL}/api/users?page=${page}&limit=${limit}`);
     if (!response.ok) {
       throw new Error("Failed to fetch users");
     }

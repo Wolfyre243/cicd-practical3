@@ -37,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string, username: string) => {
     // JWT authentication with access and refresh tokens
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password, username }),
@@ -71,7 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   ) => {
     // User registration with standard user role
     try {
-      const response = await fetch("/api/register", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password, username }),

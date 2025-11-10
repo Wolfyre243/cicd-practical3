@@ -35,7 +35,7 @@ export async function tasksLoader({ request }: LoaderFunctionArgs) {
   const page = url.searchParams.get("page") || "1";
   const limit = url.searchParams.get("limit") || "10";
   try {
-    const response = await authFetch(`/api/tasks?page=${page}&
+    const response = await authFetch(`${import.meta.env.VITE_API_URL}/api/tasks?page=${page}&
 limit=${limit}`);
     if (!response.ok) {
       throw new Error("Failed to fetch tasks");
@@ -56,7 +56,7 @@ export async function createTaskAction({ request }: ActionFunctionArgs) {
       const title = formData.get("title") as string;
       const assignedToId = formData.get("assignedToId") as string;
       const done = formData.get("done") === "true";
-      const response = await authFetch(`/api/tasks/${taskId}`, {
+      const response = await authFetch(`${import.meta.env.VITE_API_URL}/api/tasks/${taskId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -71,7 +71,7 @@ export async function createTaskAction({ request }: ActionFunctionArgs) {
     } else if (intent === "delete") {
       // Delete task
       const taskId = formData.get("taskId") as string;
-      const response = await authFetch(`/api/tasks/${taskId}`, {
+      const response = await authFetch(`${import.meta.env.VITE_API_URL}/api/tasks/${taskId}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -81,7 +81,7 @@ export async function createTaskAction({ request }: ActionFunctionArgs) {
       // Create new task
       const title = formData.get("title") as string;
       const assignedToId = formData.get("assignedToId") as string;
-      const response = await authFetch("/api/tasks", {
+      const response = await authFetch(`${import.meta.env.VITE_API_URL}/api/tasks`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

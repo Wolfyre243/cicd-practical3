@@ -51,6 +51,7 @@ jobs:
           cd api
           npx prisma migrate deploy
           npm run db:seed:dev
+          npx prisma generate
 
       - name: Run API tests
         env:
